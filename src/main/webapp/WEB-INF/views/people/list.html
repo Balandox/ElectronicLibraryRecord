@@ -6,13 +6,9 @@
 </head>
 <body>
 
-<!--Этот параметр th:each(Thymeleaf) позволяет пройти по коллекции
-на подобии цикла foreach и вывести все это в html тег-->
 <div th:each="person : ${people}">
 
     <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getFullName() + ', ' + person.getBirthdayYear()}">user</a>
-    <!--С помощью такого синтаксиса по каждому отображенному человеку
-    можно будет кликнуть и перейти на его id-->
 </div>
 <br/>
 <hr/>

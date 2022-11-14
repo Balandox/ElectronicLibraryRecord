@@ -34,8 +34,6 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model){
-        //отображаем конкретного человека, которого мы получим по id
-        // из DAO и передадим его в представление
         Person person = peopleDAO.show(id);
         model.addAttribute("person", person);
         model.addAttribute("books", peopleDAO.getListOfBooks(person));
@@ -51,17 +49,13 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
 
-        // ошибки со всех валидаторов помещаем в bindingResult
         personValidator.validate(person, bindingResult);
-        // проверяем была ли ошибка, вызывая метод validate, если была, то
-        // она запишется в bindingResult и в последствии отобразиться в форме
 
         if(bindingResult.hasErrors())
             return "people/new";
 
         this.peopleDAO.addPerson(person);
         return "redirect:/people";
-        // redirect сообщает браузеру, на какую страницу нужно перейти
     }
 
     @GetMapping("/{id}/edit")

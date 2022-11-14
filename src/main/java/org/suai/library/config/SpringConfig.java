@@ -43,7 +43,6 @@ public class SpringConfig implements WebMvcConfigurer {
         return templateResolver;
     }
 
-    // этот бин тоже задает конфигурацию наших представлений
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -53,7 +52,6 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
 
-    //здесь мы говорим, что мы будем использовать шаблонизатор Thymeleaf
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -64,8 +62,6 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
 
-    // для работы с jdbc template мы должны прописать эти два бина
-    // DataSource задает настройки для подключения к БД
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -77,8 +73,7 @@ public class SpringConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    // Возвращает объект класса JdbcTemplate, с помощью которого мы
-    // будем делать запросы к нашей БД
+
     @Bean
     public JdbcTemplate jdbcTemplate(){
         return new JdbcTemplate(dataSource());
