@@ -1,0 +1,39 @@
+
+<!--тут у нас есть три атрибута
+th:method="POST" - с каким методом будет отправляться html форма
+th:action="@{/people} - на какой url форма будет передавать данные
+th:object="@{person} - для этого объекта будет создаваться форма-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Добавить новую книгу</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/books}" th:object="${book}">
+    <label for="title">Введите название: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title error</div>
+    <br/>
+    <br/>
+
+    <label for="author">Введите имя автора: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author error</div>
+    <br/>
+    <br/>
+
+    <label for="year">Введите год: </label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year error</div>
+    <br/>
+    <br/>
+
+    <input type="submit" value="Добавить"/>
+</form>
+
+</body>
+</html>

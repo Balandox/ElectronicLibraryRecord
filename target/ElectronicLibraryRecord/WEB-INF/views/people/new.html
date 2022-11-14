@@ -1,0 +1,47 @@
+
+<!--тут у нас есть три атрибута
+th:method="POST" - с каким методом будет отправляться html форма
+th:action="@{/people} - на какой url форма будет передавать данные
+th:object="@{person} - для этого объекта будет создаваться форма-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Добавить нового человека</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="firstName">Введите имя: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">firstName error</div>
+    <br/>
+    <br/>
+
+    <label for="middleName">Введите отчество: </label>
+    <input type="text" th:field="*{middleName}" id="middleName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middleName error</div>
+    <br/>
+    <br/>
+
+    <label for="lastName">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName error</div>
+    <br/>
+    <br/>
+
+    <label for="birthdayYear">Введите год рождения: </label>
+    <input type="text" th:field="*{birthdayYear}" id="birthdayYear"/>
+    <div style="color:red" th:if="${#fields.hasErrors('birthdayYear')}" th:errors="*{birthdayYear}">birthdayYear error</div>
+    <br/>
+    <br/>
+
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">fullName error</div>
+
+    <input type="submit" value="Добавить"/>
+</form>
+
+</body>
+</html>

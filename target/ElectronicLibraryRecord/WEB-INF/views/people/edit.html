@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование человека</title>
+</head>
+
+<body>
+
+<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+    <label for="firstName">Введите имя: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">firstName error</div>
+    <br/>
+    <br/>
+
+    <label for="middleName">Введите отчество: </label>
+    <input type="text" th:field="*{middleName}" id="middleName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middleName error</div>
+    <br/>
+    <br/>
+
+    <label for="lastName">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName error</div>
+    <br/>
+    <br/>
+
+    <label for="birthdayYear">Введите год рождения: </label>
+    <input type="text" th:field="*{birthdayYear}" id="birthdayYear"/>
+    <div style="color:red" th:if="${#fields.hasErrors('birthdayYear')}" th:errors="*{birthdayYear}">birthdayYear error</div>
+    <br/>
+    <br/>
+
+    <input type="submit" value="Обновить"/>
+</form>
+
+</body>
+</html>
